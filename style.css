@@ -1,0 +1,24 @@
+body {
+	background-color: #FCFFF5;
+  margin-top: 50px;
+}
+.blockquote-reverse {
+  background-color: #91AA9D;
+  border-right: none;
+  box-shadow: 2px 2px 2px 2px #E0E0E0;
+  margin-top: 30px;
+}
+#quotetext,
+#quoteautor {
+	color: #FCFFF5;
+}
+.btn {
+  background-color: #91AA9D;
+  border-color: #91AA9D;
+  display: block;
+  margin: auto;
+}
+h1 {
+  font-family: 'Pacifico', Arial, serif, cursive;
+  font-size: 50px;
+}
