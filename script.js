@@ -1,53 +1,50 @@
 $(document).ready(function(){
+	var data;
+	var url = "http://www.stands4.com/services/v2/quotes.php?uid=5119&tokenid=YUUqaR1qGWOB3Nkq&searchtype=RANDOM";
+	var quote = "";
+	var auth = "";
 
-	$("button").click(function(){
-		var data;
-		var quote = "";
-		var auth = "";
+	// Generate Tweet button
+	//twtButton();
 
-		//Funcion para obtener el quote. La respuesta es un archivo XML que se guarda en data
-		//y obtengo quote y autor leyendo los tags. Como declare la variable como string al
-		//principio ya se parsean asi.
-		$.ajax({
-				type: "GET",
-				url: "http://www.stands4.com/services/v2/quotes.php?uid=5119&tokenid=YUUqaR1qGWOB3Nkq&searchtype=RANDOM",
-				success: function(data) {
-					quote = data.getElementsByTagName('quote')[0].childNodes[0].nodeValue;
-					auth = data.getElementsByTagName('author')[0].childNodes[0].nodeValue;
-				}
-			});
+	$("#newQuote").click(function(){
 
-		$("#quotetext, #quoteautor").fadeOut(300, function() {
-			document.getElementById("quotetext").innerHTML = "\"" + quote + "\"";
-			document.getElementById("quoteautor").innerHTML = auth;
-	    	$("#quotetext, #quoteautor").fadeIn(300);
+		$.get( url, function( data ) {
+			// Get quote and author reading content of XML tags. Because vars were
+			// declared as strings, parsing is done automatically.
+			quote = $(data).find('quote').html();
+			auth = $(data).find('author').html();
+
+			$("#quotetext, #quoteautor").fadeOut(300, function() {
+				$("#quotetext").text("\"" + quote + "\"");
+				$("#quoteautor").text("— " + auth);
+		    $("#quotetext, #quoteautor").fadeIn(300);
+
+		  twtButton();
 	    });
+		});
 	});
 
-	window.twttr = (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-    if (d.getElementById(id)) return t;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
- 
-    t._e = [];
-    t.ready = function(f) {
-      t._e.push(f);
-  	};
-    return t;
-	}(document, "script", "twitter-wjs"));
+	function twtButton() {
 
-	function tweetIt() {
-	  var phrase = document.getElementById("quotetext");
-	  var tweetUrl = 'https://twitter.com/share?text=' +
-	   	encodeURIComponent(phrase) +
-	    '.' +
-	    '&url=' +
-	    'https://codepen.io/RamiroP/pen/ZWNpGo';
-	    
-	  window.open(tweetUrl);
+		// Remove current button to avoid multiple ones
+		if ($("#tweetDiv") != null) {
+			$("#tweetDiv").html("");
+		}
+
+		// Create a new tweet element
+		var $tweet = $("<a>", 
+		{class: "twitter-share-button",
+		href: "https://twitter.com/share",
+		"data-size": "large",
+		"data-url": "https://www.testurl.com",
+		"data-hashtags": "quotes",
+		"data-text": '"' + quote + '"' + ' ' + "—" + auth});
+		$($tweet).html("Tweet");
+
+		// Append button to div
+		$("#tweetDiv").append($tweet);
+
+		twttr.widgets.load();
 	}
-	});
+});

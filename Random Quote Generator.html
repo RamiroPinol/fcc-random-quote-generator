@@ -5,36 +5,33 @@
   <title>Random Quotes Generator</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <script type="text/javascript" src="script.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-aNUYGqSUL9wG/vP7+cWZ5QOM4gsQou3sBfWRr/8S3R1Lv0rysEmnwsRKMbhiQX/O" crossorigin="anonymous">
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="widgets.js"></script>
+  <script src="script.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
 </head>
 
 <body>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-xs-12 col-md-6 col-md-offset-3">
-				<div class="text-center">
-					<h1>Someone once said...</h1>
-				</div>
-				<blockquote class="blockquote-reverse">
- 				<em><h2 id="quotetext">"Simplicity is the ultimate sophistication"</h2></em>
- 				<footer id="quoteautor">Leonardo da Vinci</footer>
-				</blockquote>
-				<div>
-					<button type="button" class="btn btn-default">New quote</button>
-				</div>
-				<div class="pull-right">
-					<a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="large" data-text=quote>
-					Tweet</a>
-					<button onclick="tweetIt()">Tweet it!</button>
-				</div>
-			</div>
-		</div>
+
+<div class="row">
+	<h1 class="col-m-12 col-12" id="header-text">Someone once said...</h1>
+</div>
+
+<div class="row">
+	<div class="col-m-12 col-8" id="blockquote">
+		<p id="quotetext">"Simplicity is the ultimate sophistication"</p>
+		<p id="quoteautor">— Leonardo da Vinci</p>
 	</div>
+</div>
+
+<div class="row">
+	<div>
+		<button type="button" id="newQuote">New quote</button>
+	</div>
+
+	<div id="tweetDiv"></div>
+</div>
+
 </body>
 </html>
