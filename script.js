@@ -30,16 +30,17 @@ $(document).ready(function(){
 		// Remove current button to avoid multiple ones
 		if ($("#tweetDiv") != null) {
 			$("#tweetDiv").html("");
-		}
+		};
 
 		// Create a new tweet element
 		var $tweet = $("<a>", 
 		{class: "twitter-share-button",
 		href: "https://twitter.com/share",
 		"data-size": "large",
-		"data-url": "https://www.testurl.com",
+		"data-url": "http://ramiropinol.github.io/fcc-random-quote-generator/",
 		"data-hashtags": "quotes",
 		"data-text": '"' + quote + '"' + ' ' + "—" + auth});
+		
 		$($tweet).html("Tweet");
 
 		// Append button to div
